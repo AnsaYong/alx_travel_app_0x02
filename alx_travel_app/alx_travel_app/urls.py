@@ -48,5 +48,4 @@ urlpatterns = [
     ),
     path("redoc/", schema_view.with_ui("redoc", cache_timeout=0), name="schema-redoc"),
     path("", include("listings.urls")),
-    path("", include("bookings.urls")),
 ]

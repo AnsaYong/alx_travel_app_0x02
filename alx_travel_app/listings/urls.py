@@ -3,7 +3,6 @@ from django.urls import path, include
 from .views import (
     ListingViewSet,
     BookingViewSet,
-    PaymentViewSet,
     InitiatePaymentView,
     VerifyPaymentView,
 )
@@ -12,7 +11,6 @@ from .views import (
 router = DefaultRouter()
 router.register(r"listings", ListingViewSet, basename="listings")
 router.register(r"bookings", BookingViewSet, basename="bookings")
-router.register(r"payments", PaymentViewSet, basename="payments")
 
 urls = router.urls
 

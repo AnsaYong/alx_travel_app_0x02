@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Listing, Booking
+from .models import Listing, Booking, Payment
 from django.contrib.auth.models import User
 
 
@@ -35,3 +35,15 @@ class BookingSerializer(serializers.ModelSerializer):
         model = Booking
         fields = "__all__"
         read_only_fields = ["booking_date"]
+
+
+class PaymentSerializer(serializers.ModelSerializer):
+    booking = BookingSerializer(read_only=True)  # Nested booking details
+    booking_id = serializers.PrimaryKeyRelatedField(
+        queryset=Booking.objects.all(), source="booking", write_only=True
+    )
+
+    class Meta:
+        model = Payment
+        fields = "__all__"
+        read_only_fields = ["payment_date"]
